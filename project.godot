@@ -15,10 +15,6 @@ run/main_scene="uid://g0prbqut47l7"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/minimize_html_build/plugin.cfg")
-
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
