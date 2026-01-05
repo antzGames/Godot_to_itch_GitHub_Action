@@ -38,7 +38,7 @@ Make sure you setup the export path `exports/web/index.html` as seen on the scre
 
 <img width="1838" height="1140" alt="image" src="https://github.com/user-attachments/assets/923d2dcb-69f7-44ac-8be7-2c6f82b69130" />
 
-## Step 5: GitHub Action
+## Step 5: GitHub Action setup
 
 Add this action to the `.github/workflows` directory in your game's GitHub repository. Create the directory on the repository website or create it locally and then push.
 
@@ -83,6 +83,19 @@ jobs:
           files: "${{ steps.export.outputs.archive_directory }}/test-web.zip"
 ```
 
-This script deploys a web test project using a C++ GDExtension to itch.io at:
+## Step 6: GitHub Action CONFIG changes
+
+Make the appropiate changes to  `itch_user` and `itch_game` in the `itchio-publish.yml` file:
+
+```yml
+          itch_user: replace_with_your_itch_user
+          itch_game: replace_with_your_itch_game_name
+```
+
+## This repo is a test project
+
+This repository deploys a web test project using a C++ GDExtension to itch.io at:
 
 https://antzgames.itch.io/test-project?secret=YtwaXmKha1xKVDZSxJCw0HMKOU
+
+This project only works on Windows and the web.
