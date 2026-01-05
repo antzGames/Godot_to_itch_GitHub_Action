@@ -1,0 +1,36 @@
+name: Publish to Itch.io
+
+on:
+  push:
+    branches: ["master"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Godot Export
+        id: export
+        uses: firebelley/godot-export@v5.2.1
+        with:
+          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/4.5-stable/Godot_v4.5-stable_linux.x86_64.zip
+          https://github.com/godotengine/godot/releases/download/4.5-stable/Godot_v4.5-stable_export_templates.tpz
+          # If the game is in the root of your project
+          relative_project_path: ./
+          # Really handy for HTML exports!
+          archive_output: true
+          # Cache the Godot export templates and Godot executable,
+          # so that they are not downloaded again every time.
+          cache: true
+        env:
+          GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
+      - name: Publish to Itch
+        uses: Ayowel/butler-to-itch@v1.0.0
+        with:
+          butler_key: ${{secrets.ITCHIO_TOKEN}}
+          itch_user: antzgames
+          itch_game: test-project
+          version: ${{ github.ref_name }}
+          files: "${{ steps.export.outputs.archive_directory }}/mosaics-web.zip"
