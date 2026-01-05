@@ -63,17 +63,12 @@ jobs:
 
       - name: Godot Export
         id: export
-        uses: firebelley/godot-export@v5.2.1
+        uses: firebelley/godot-export@v7.0.0
         with:
           godot_executable_download_url: https://github.com/godotengine/godot/releases/download/4.5.1-stable/Godot_v4.5.1-stable_linux.x86_64.zip
           godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/4.5.1-stable/Godot_v4.5.1-stable_export_templates.tpz
-          # If the game is in the root of your project
           relative_project_path: ./
-          # Really handy for HTML exports!
           archive_output: true
-          # Cache the Godot export templates and Godot executable,
-          # so that they are not downloaded again every time.
-          cache: true
         env:
           GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
       - name: Publish to Itch
@@ -85,3 +80,5 @@ jobs:
           version: ${{ github.ref_name }}
           files: "${{ steps.export.outputs.archive_directory }}/test-web.zip"
 ```
+
+This script deploys a web test project using a C++ GDExtension to itch at: https://antzgames.itch.io/test-project?secret=YtwaXmKha1xKVDZSxJCw0HMKOU
