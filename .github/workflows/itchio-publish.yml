@@ -27,7 +27,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
       - name: Publish to Itch
-        uses: Ayowel/butler-to-itch@v1.0.0
+        uses: Ayowel/butler-to-itch@v1.2.0
         with:
           butler_key: ${{secrets.ITCHIO_TOKEN}}
           itch_user: antzgames
