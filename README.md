@@ -3,24 +3,24 @@
 *Updated January 2026, using Godot 4.5.1*
 
 ## Prerequisites
-- Your code is in a GitHub repo
+- Your game code is in a GitHub repo
 - You already created the project page on itch.io
 
 ## Step 1: Tokens
 First we need an API Token for Itch.io. Head to the `Account Settings > Developer > API Keys` section. This [link](https://itch.io/user/settings/api-keys) should also take you there. Generate a new API key.
 
-> Pic 1
+<img width="1264" height="557" alt="022-itch-api-keys" src="https://github.com/user-attachments/assets/36870449-d299-4b9e-a7a1-21462bb38d57" />
 
 Next up, you will need a dedicated GitHub token. Under your [profile developer settings](https://github.com/settings/tokens) create a new token. Give it the `repo` permissions. Set the expiration date as you see fit.
 
-> Pic 2
+<img width="1126" height="191" alt="022-github-token" src="https://github.com/user-attachments/assets/6c6cfff6-e821-4c21-a0dd-55a050cf49c6" />
 
 Go to your game project’s GitHub repo. In the **repository settings** add the following tokens secrets to be accessible in Actions.
 
 `GH_TOKEN`
 `ITCHIO_TOKEN`
 
-> Pic 3
+<img width="1166" height="686" alt="022-github-action-secret" src="https://github.com/user-attachments/assets/bb11e805-c11e-4605-a10d-0e9f56ffaed0" />
 
 ## Step 2: Create export settings in Godot
 If you export your project at least once, Godot will create a `export_presets.cfg` file in the root of the project. You can find the export settings in `Project > Export`.
@@ -28,6 +28,60 @@ If you export your project at least once, Godot will create a `export_presets.cf
 > [!IMPORTANT]
 > Important step.
 
-Give a name to the export template. End the name with -web, because it’s a HTML export. 
+Give a name to the export template. End the name with `-web`, because it’s a HTML export. 
 Alternatively you could do `-windows`, `-macos`, `-linux`, etc. 
 This is because the GitHub action we will be using uses this suffix to determine to which [channel](https://itch.io/docs/butler/pushing.html#channel-names) on itch should the build be pushed.
+
+Make sure you setup the export path `exports/web/index.html' as seen on the screen below:
+
+<img width="1838" height="1140" alt="image" src="https://github.com/user-attachments/assets/923d2dcb-69f7-44ac-8be7-2c6f82b69130" />
+
+Step 3: GitHub Action
+
+Add this action to the `.github/workflows` directory in your game's GitHub repository. Create the directory on the repository website or create it locally and then push.
+
+```bash
+mkdir -p .github/workflows
+touch .github/workflows/itchio-publish.yml
+```
+
+Add the following code to the `itchio-publish.yml` file:
+
+```yml
+name: Publish to Itch.io
+
+on:
+  push:
+    branches: ["master"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Godot Export
+        id: export
+        uses: firebelley/godot-export@v5.2.1
+        with:
+          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/4.5.1-stable/Godot_v4.5.1-stable_linux.x86_64.zip
+          godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/4.5.1-stable/Godot_v4.5.1-stable_export_templates.tpz
+          # If the game is in the root of your project
+          relative_project_path: ./
+          # Really handy for HTML exports!
+          archive_output: true
+          # Cache the Godot export templates and Godot executable,
+          # so that they are not downloaded again every time.
+          cache: true
+        env:
+          GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
+      - name: Publish to Itch
+        uses: Ayowel/butler-to-itch@v1.2.0
+        with:
+          butler_key: ${{secrets.ITCHIO_TOKEN}}
+          itch_user: antzgames
+          itch_game: test-project
+          version: ${{ github.ref_name }}
+          files: "${{ steps.export.outputs.archive_directory }}/test-web.zip"
+```
