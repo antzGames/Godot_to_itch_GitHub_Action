@@ -94,8 +94,6 @@ Make the appropiate changes to  `itch_user` and `itch_game` in the `itchio-publi
 
 ## This repo is a test project
 
-This repository deploys a web test project using a C++ GDExtension to itch.io at:
+This repository deploys a web test project using the limboAI C++ GDExtension to itch.io at:
 
 https://antzgames.itch.io/test-project?secret=YtwaXmKha1xKVDZSxJCw0HMKOU
-
-This project only works on Windows and the web.

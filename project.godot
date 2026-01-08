@@ -13,7 +13,12 @@ config_version=5
 config/name="New Game Project"
 run/main_scene="uid://g0prbqut47l7"
 config/features=PackedStringArray("4.5", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/image="uid://cgiou1qe7h2fb"
+config/icon="uid://b17iddlytnhol"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/easy_web_loader/plugin.cfg")
 
 [rendering]
 

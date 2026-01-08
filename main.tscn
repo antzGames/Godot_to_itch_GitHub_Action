@@ -1,47 +1,41 @@
-[gd_scene load_steps=2 format=3 uid="uid://g0prbqut47l7"]
+[gd_scene load_steps=3 format=3 uid="uid://g0prbqut47l7"]
 
-[ext_resource type="Script" uid="uid://bwub4l4ybakk8" path="res://main.gd" id="1_657qb"]
+[ext_resource type="Script" uid="uid://dytdol7jjptyx" path="res://main.gd" id="1_657qb"]
+[ext_resource type="Texture2D" uid="uid://b17iddlytnhol" path="res://antz.png" id="1_ig7tw"]
 
-[node name="Main" type="CenterContainer"]
+[node name="CenterContainer" type="CenterContainer"]
+custom_minimum_size = Vector2(400, 400)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -0.5
-offset_top = -33.0
-offset_right = 0.5
-offset_bottom = 33.0
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_657qb")
 
-[node name="GDExample" type="GDExample" parent="."]
-position = Vector2(18.258, 19.9839)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Container" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
+alignment = 2
 
-[node name="Title" type="Label" parent="VBoxContainer"]
+[node name="Label" type="Label" parent="Container"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Prime Number Benchmark"
+size_flags_vertical = 8
+text = "LimboAI GDExtension loaded!"
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Info" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 22
-horizontal_alignment = 1
+[node name="Antz" type="Sprite2D" parent="."]
+position = Vector2(200, 200)
+texture = ExtResource("1_ig7tw")
+centered = false
+offset = Vector2(-200, -200)
 
-[node name="Result" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 22
-horizontal_alignment = 1
-
-[node name="Algo" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 10
-horizontal_alignment = 1
+[node name="LimboHSM" type="LimboHSM" parent="."]
