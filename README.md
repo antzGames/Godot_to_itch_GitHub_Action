@@ -5,6 +5,7 @@
 ## Prerequisites
 - Your game code is in a GitHub repo
 - You already created the project page on itch.io
+- ⚠️⚠️⚠️Follow **ALL** the steps below ⚠️⚠️⚠️
 
 ## Step 1: itch.io Token
 First we need an API Token for itch.io. Head to the `Account Settings > Developer > API Keys` section. This [link](https://itch.io/user/settings/api-keys) should also take you there. Generate a new API key specifically for Github Actions.  
