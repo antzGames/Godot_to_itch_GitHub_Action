@@ -1,4 +1,4 @@
-# Auto Build + Publish your Godot game to Itch.io with GitHub Actions
+# Auto Build + Publish your Godot HTML game to Itch.io with GitHub Actions
 
 *Updated January 2026, using Godot 4.5.1*
 
