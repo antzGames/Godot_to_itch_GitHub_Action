@@ -28,7 +28,9 @@ alignment = 2
 [node name="Label" type="Label" parent="Container"]
 layout_mode = 2
 size_flags_vertical = 8
-text = "LimboAI GDExtension loaded!"
+text = "Version 2
+
+LimboAI GDExtension loaded!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
