@@ -4,6 +4,8 @@
 
 ![GHActions](https://github.com/user-attachments/assets/46f22a85-47c8-4a4e-b2e6-b320a19ea934)
 
+Watch the offical video tutorial on YouTube: https://youtu.be/ROIMh3aHjMk
+
 ## Prerequisites
 - Your game code is in a GitHub repo
 - You already created your project page on itch.io
