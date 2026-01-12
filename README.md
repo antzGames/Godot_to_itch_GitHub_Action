@@ -6,7 +6,7 @@
 
 ## Prerequisites
 - Your game code is in a GitHub repo
-- You already created the project page on itch.io
+- You already created your project page on itch.io
 - ⚠️⚠️⚠️Follow **ALL** the steps below ⚠️⚠️⚠️
 
 ## Step 1: itch.io Token
