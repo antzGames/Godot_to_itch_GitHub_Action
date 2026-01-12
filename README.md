@@ -2,6 +2,8 @@
 
 *Updated January 2026, using Godot 4.5.1*
 
+![GHActions](https://github.com/user-attachments/assets/46f22a85-47c8-4a4e-b2e6-b320a19ea934)
+
 ## Prerequisites
 - Your game code is in a GitHub repo
 - You already created the project page on itch.io
