@@ -55,7 +55,7 @@ on:
   push:
     branches: ["master"]
     paths-ignore:
-	  - 'README.md'          # Ignore changes to README.md
+      - 'README.md'          # Ignore changes to README.md
 jobs:
   deploy:
     runs-on: ubuntu-latest
