@@ -16,20 +16,14 @@ First we need an API Token for itch.io. Head to the `Account Settings > Develope
 
 <img width="1264" height="557" alt="022-itch-api-keys" src="https://github.com/user-attachments/assets/36870449-d299-4b9e-a7a1-21462bb38d57" />
 
-## Step 2: GitHub Token
-Next up, you will need a dedicated GitHub token. Under your [profile developer settings](https://github.com/settings/tokens) create a new token. Give it the `repo` permissions. Set the expiration date as you see fit.
-
-<img width="1126" height="191" alt="022-github-token" src="https://github.com/user-attachments/assets/6c6cfff6-e821-4c21-a0dd-55a050cf49c6" />
-
-## Step 3: Repository Action Secrets
+## Step 2: Repository Action Secrets
 Go to your game project’s GitHub repo. In the **repository settings** add the following tokens secrets to be accessible in Actions.  Make sure you name them exactly as below:
 
-`GH_TOKEN`
 `ITCHIO_TOKEN`
 
 <img width="1166" height="686" alt="022-github-action-secret" src="https://github.com/user-attachments/assets/bb11e805-c11e-4605-a10d-0e9f56ffaed0" />
 
-## Step 4: Create and configure export settings in Godot
+## Step 3: Create and configure export settings in Godot
 If you export your project at least once, Godot will create a `export_presets.cfg` file in the root of the project. You can find the export settings in `Project > Export`.
 
 > [!IMPORTANT]
@@ -43,7 +37,7 @@ Make sure you setup the export path `exports/web/index.html` as seen on the scre
 
 <img width="1838" height="1140" alt="image" src="https://github.com/user-attachments/assets/923d2dcb-69f7-44ac-8be7-2c6f82b69130" />
 
-## Step 5: GitHub Action setup
+## Step 4: GitHub Action setup
 
 Add this action to the `.github/workflows` directory in your game's GitHub repository. Create the directory on the repository website or create it locally and then push.
 
@@ -60,26 +54,27 @@ name: Publish to Itch.io
 on:
   push:
     branches: ["master"]
-
+    paths-ignore:
+	  - 'README.md'          # Ignore changes to README.md
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
 
       - name: Godot Export
         id: export
-        uses: firebelley/godot-export@v7.0.0
+        uses: firebelley/godot-export@v8.0.0
         with:
-          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/4.5.1-stable/Godot_v4.5.1-stable_linux.x86_64.zip
-          godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/4.5.1-stable/Godot_v4.5.1-stable_export_templates.tpz
+          godot_executable_download_url: https://github.com/godotengine/godot/releases/download/4.7.1-stable/Godot_v4.7.1-stable_linux.x86_64.zip
+          godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/4.7.1-stable/Godot_v4.7.1-stable_export_templates.tpz
           relative_project_path: ./
           archive_output: true
-        env:
-          GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
+        #env:
+          #GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
       - name: Publish to Itch
-        uses: Ayowel/butler-to-itch@v1.2.0
+        uses: Ayowel/butler-to-itch@v1.3.1
         with:
           butler_key: ${{secrets.ITCHIO_TOKEN}}
           itch_user: antzgames
@@ -88,7 +83,7 @@ jobs:
           files: "${{ steps.export.outputs.archive_directory }}/test-web.zip"
 ```
 
-## Step 6: GitHub Action CONFIG changes
+## Step 5: GitHub Action CONFIG changes
 
 Make the appropiate changes to  `itch_user` and `itch_game` in the `itchio-publish.yml` file:
 
