@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://g0prbqut47l7"]
+[gd_scene format=3 uid="uid://g0prbqut47l7"]
 
 [ext_resource type="Script" uid="uid://dytdol7jjptyx" path="res://main.gd" id="1_657qb"]
 [ext_resource type="Texture2D" uid="uid://b17iddlytnhol" path="res://antz.png" id="1_ig7tw"]
 
-[node name="CenterContainer" type="CenterContainer"]
+[node name="CenterContainer" type="CenterContainer" unique_id=1110257012]
 custom_minimum_size = Vector2(400, 400)
 anchors_preset = 8
 anchor_left = 0.5
@@ -20,22 +20,24 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_657qb")
 
-[node name="Container" type="VBoxContainer" parent="."]
+[node name="Container" type="VBoxContainer" parent="." unique_id=1157708538]
 custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="Container"]
+[node name="Label" type="Label" parent="Container" unique_id=752074331]
 layout_mode = 2
 size_flags_vertical = 8
-text = "LimboAI GDExtension loaded!"
+text = "Tested on Godot 4.7.1
+
+LimboAI GDExtension loaded!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Antz" type="Sprite2D" parent="."]
+[node name="Antz" type="Sprite2D" parent="." unique_id=1128379689]
 position = Vector2(200, 200)
 texture = ExtResource("1_ig7tw")
 centered = false
 offset = Vector2(-200, -200)
 
-[node name="LimboHSM" type="LimboHSM" parent="."]
+[node name="LimboHSM" type="LimboHSM" parent="." unique_id=483640399]
