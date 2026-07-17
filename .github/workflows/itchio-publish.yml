@@ -3,8 +3,8 @@ name: Publish to Itch.io
 on:
   push:
     branches: ["master"]
-    #paths-ignore:
-    #  - 'README.md'          # Ignore changes to README.md
+    paths-ignore:
+      - 'README.md'          # Ignore changes to README.md
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -20,8 +20,8 @@ jobs:
           godot_export_templates_download_url: https://github.com/godotengine/godot/releases/download/4.7.1-stable/Godot_v4.7.1-stable_export_templates.tpz
           relative_project_path: ./
           archive_output: true
-        env:
-          GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
+        #env:
+          #GITHUB_TOKEN: ${{secrets.GH_TOKEN}}
       - name: Publish to Itch
         uses: Ayowel/butler-to-itch@v1.3.1
         with:
